@@ -7,7 +7,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
-import SocialLinks from './components/AIChat'; // Renamed logically but using existing file to minimize clutter
+import SocialLinks from './components/AIChat';
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -21,10 +21,13 @@ const App: React.FC = () => {
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+  const toggleTheme = () => {
+    console.log("Toggling theme to:", !isDarkMode);
+    setIsDarkMode(prev => !prev);
+  };
 
   return (
-    <div className="min-h-screen selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+    <div className="min-h-screen selection:bg-indigo-500 selection:text-white">
       <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <main>
         <Hero />

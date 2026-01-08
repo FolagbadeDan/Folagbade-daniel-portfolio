@@ -2,9 +2,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { PERSONAL_INFO, PROJECTS, SKILLS, EXPERIENCE } from "../constants";
 
-const getAIClient = () => {
-  return new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-};
+// Initializing the AI client strictly following the provided guidelines:
+// Always use const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const SYSTEM_INSTRUCTION = `
 You are the AI context provider for Folagbade Daniel (Folagbade Onafuye Daniel). 
@@ -27,7 +27,7 @@ Guidelines:
 `;
 
 export async function chatWithDanielAI(message: string, history: { role: 'user' | 'model', text: string }[]) {
-  const ai = getAIClient();
+  // Using the shared ai instance initialized with process.env.API_KEY
   const chat = ai.chats.create({
     model: 'gemini-3-flash-preview',
     config: {
@@ -39,6 +39,7 @@ export async function chatWithDanielAI(message: string, history: { role: 'user' 
 
   try {
     const response = await chat.sendMessage({ message });
+    // Correctly extracting text using the .text property (not a method)
     return response.text;
   } catch (error) {
     console.error("AI Chat Error:", error);

@@ -9,6 +9,7 @@ export const PERSONAL_INFO = {
   bio: "I'm a Digital Manager with a heart for building systems that work for people. From scaling fintech platforms to architecting award-winning web designs, I focus on radical clarity and measurable growth.",
   linkedin: "https://www.linkedin.com/in/folagbadedan/",
   twitter: "https://x.com/Fiolagbade",
+  github: "https://github.com/folagbadedan",
   instagram: "https://www.instagram.com/folagbadedan/",
   whatsapp: "https://wa.link/r6wa55",
   email: "daniel@youmaximize.com",
