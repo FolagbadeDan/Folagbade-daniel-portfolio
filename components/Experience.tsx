@@ -2,62 +2,92 @@
 import React from 'react';
 import { EXPERIENCE, PERSONAL_INFO } from '../constants';
 
+const companyColors: Record<string, string> = {
+  'PearMonie':       'text-accent1 bg-accent1/10 border-accent1/20',
+  'CITISQUARE AFRICA': 'text-accent2 bg-accent2/10 border-accent2/20',
+  'YouMaximize':     'text-accent3 bg-accent3/10 border-accent3/20',
+};
+
+const companyBorders: Record<string, string> = {
+  'PearMonie':       'group-hover:border-accent1/40',
+  'CITISQUARE AFRICA': 'group-hover:border-accent2/40',
+  'YouMaximize':     'group-hover:border-accent3/40',
+};
+
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-32 bg-white dark:bg-black">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-start">
-          <div className="w-full lg:w-1/3 lg:sticky lg:top-40">
-            <h2 className="font-mono text-xs font-bold uppercase tracking-[0.4em] text-indigo-500 mb-8">Professional Journey</h2>
-            <h3 className="text-5xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tighter">
-              A decade of <span className="text-indigo-600">innovation.</span>
+    <section id="experience" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute top-[40%] right-[-10%] w-[30rem] h-[30rem] bg-accent2/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none z-0"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+
+        {/* Section header */}
+        <div className="mb-16 md:mb-24">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-accent2 mb-4">Work Experience</h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <h3 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tighter">
+              Where I've <span className="text-accent1 italic pr-2">worked.</span>
             </h3>
-            <p className="mt-10 text-slate-600 dark:text-slate-400 text-xl leading-relaxed font-medium">
-              From founding growth agencies to pioneering real estate data transparency in Africa.
-            </p>
-            <div className="mt-12">
-               <a 
-                 href={PERSONAL_INFO.linkedin} 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="inline-flex items-center space-x-4 px-8 py-4 rounded-2xl glass border border-slate-200 dark:border-white/10 group hover:border-indigo-500 transition-all"
-               >
-                 <span className="font-bold text-sm">Full Experience</span>
-                 <i className="fas fa-arrow-right text-indigo-500 group-hover:translate-x-2 transition-transform"></i>
-               </a>
-            </div>
+            <a
+              href={PERSONAL_INFO.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl glass border border-slate-300 dark:border-white/10 hover:border-primary/50 transition-all self-start md:self-auto bg-white/50 dark:bg-cardDark/50 shadow-sm hover:-translate-y-1"
+            >
+              <i className="fab fa-linkedin text-primary text-lg"></i>
+              <span className="font-bold text-sm text-slate-800 dark:text-slate-200">Full profile on LinkedIn</span>
+              <i className="fas fa-arrow-right text-primary group-hover:translate-x-1 transition-transform"></i>
+            </a>
           </div>
-          
-          <div className="w-full lg:w-2/3 space-y-24">
-            {EXPERIENCE.map((exp, idx) => (
-              <div key={idx} className="relative pl-12 md:pl-20 border-l-2 border-slate-100 dark:border-white/5">
-                <div className="absolute left-[-11px] top-0 w-5 h-5 rounded-full bg-indigo-600 border-4 border-white dark:border-black shadow-lg shadow-indigo-600/30"></div>
-                
-                <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <h4 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">{exp.role}</h4>
-                    <p className="text-xl font-bold text-indigo-600 mt-1">{exp.company}</p>
+        </div>
+
+        {/* Experience cards — modern bento grid */}
+        <div className="grid grid-cols-1 gap-6">
+          {EXPERIENCE.map((exp, idx) => {
+            const badgeClasses = companyColors[exp.company] ?? 'text-primary bg-primary/10 border-primary/20';
+            const borderHover = companyBorders[exp.company] ?? 'group-hover:border-primary/40';
+            
+            return (
+              <div
+                key={idx}
+                className={`group bento-card p-6 md:p-10 glass border border-white/20 dark:border-white/5 bg-white/10 dark:bg-cardDark/60 ${borderHover}`}
+              >
+                {/* Top row */}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+                  <div className="flex items-start gap-4 md:gap-6">
+                    {/* Index number */}
+                    <span className="text-4xl font-black text-slate-300 dark:text-white/10 tracking-tighter select-none mt-1 hidden sm:block">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h4 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">{exp.role}</h4>
+                      <div className="flex flex-wrap items-center gap-3 mt-3">
+                        <span className={`px-3 py-1 rounded-xl border text-[10px] md:text-xs font-black uppercase tracking-widest shadow-sm ${badgeClasses}`}>
+                          {exp.company}
+                        </span>
+                        <span className="text-slate-500 dark:text-slate-400 text-xs md:text-sm font-semibold tracking-wide">{exp.period}</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="px-5 py-2 rounded-xl bg-indigo-50 dark:bg-white/5 text-indigo-600 dark:text-indigo-300 text-[10px] font-black tracking-widest uppercase border border-indigo-100 dark:border-white/5">
-                    {exp.period}
-                  </span>
                 </div>
-                
-                <p className="text-slate-600 dark:text-slate-400 mb-10 text-xl leading-relaxed font-medium">
+
+                {/* Description */}
+                <p className="text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-medium mb-8 sm:pl-16">
                   {exp.description}
                 </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                {/* Achievements */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:pl-16">
                   {exp.achievements.map((ach, aIdx) => (
-                    <div key={aIdx} className="flex items-start space-x-4 p-5 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
-                      <i className="fas fa-check-circle text-indigo-500 mt-1"></i>
-                      <span className="text-base text-slate-600 dark:text-slate-300 font-semibold leading-snug">{ach}</span>
+                    <div key={aIdx} className="flex items-start gap-3 p-4 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/20 dark:border-white/5 transition-colors shadow-sm">
+                      <i className="fas fa-check text-accent4 mt-1 text-xs flex-shrink-0 drop-shadow-md"></i>
+                      <span className="text-sm md:text-base text-slate-800 dark:text-slate-200 font-semibold leading-snug">{ach}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

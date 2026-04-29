@@ -6,6 +6,7 @@ export interface Project {
   tags: string[];
   icon: string;
   color: string;
+  featured?: boolean;
 }
 
 export interface ChatMessage {
@@ -15,5 +16,6 @@ export interface ChatMessage {
 
 export interface Skill {
   category: string;
+  icon?: string;
   items: string[];
 }
