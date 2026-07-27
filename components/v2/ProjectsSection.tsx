@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import FadeIn from './FadeIn';
 import LiveProjectButton from './LiveProjectButton';
-import { PROJECT_CARDS, ProjectCard } from './data';
+import { PROJECT_CARDS, PROJECT_TILES, ProjectCard } from './data';
 
 const RADIUS = 'rounded-[40px] sm:rounded-[50px] md:rounded-[60px]';
 
@@ -128,6 +128,55 @@ const ProjectsSection: React.FC = () => {
             progress={scrollYProgress}
           />
         ))}
+      </div>
+
+      {/* Remaining work, without the 85vh-per-card scroll cost of the stack. */}
+      <div className="mx-auto mt-20 max-w-6xl sm:mt-24 md:mt-28">
+        <FadeIn
+          as="h3"
+          y={30}
+          className="mb-8 text-xs font-medium uppercase tracking-widest text-[#D7E2EA] opacity-50 sm:mb-10"
+        >
+          More work
+        </FadeIn>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+          {PROJECT_TILES.map((tile, i) => (
+            <FadeIn key={tile.number} delay={i * 0.08} y={30}>
+              <a
+                href={tile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full flex-col overflow-hidden rounded-[32px] border-2 border-[#D7E2EA]/30 bg-[#0C0C0C] transition-colors duration-300 hover:border-[#D7E2EA] sm:rounded-[40px]"
+              >
+                <img
+                  src={tile.image}
+                  alt={`${tile.name} homepage`}
+                  loading="lazy"
+                  className="h-[200px] w-full object-cover object-top sm:h-[240px] md:h-[280px]"
+                />
+                <div className="flex flex-1 items-end justify-between gap-4 p-5 sm:p-6">
+                  <div className="flex items-center gap-4">
+                    <span className="text-2xl font-black leading-none text-[#D7E2EA] opacity-30 sm:text-3xl">
+                      {tile.number}
+                    </span>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-light uppercase tracking-widest text-[#D7E2EA] opacity-60">
+                        {tile.category}
+                      </span>
+                      <span className="text-base font-medium uppercase leading-tight text-[#D7E2EA] sm:text-lg">
+                        {tile.name}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="shrink-0 text-xs uppercase tracking-widest text-[#D7E2EA] opacity-50 transition-opacity duration-300 group-hover:opacity-100">
+                    View →
+                  </span>
+                </div>
+              </a>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );

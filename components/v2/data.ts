@@ -14,9 +14,10 @@
 const shot = (url: string, w: number, h: number) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${h}`;
 
+// Culbeed Media removed: the site is down (expired TLS certificate, host
+// unreachable). Re-add it here and to PROJECTS below once it is back up.
 export const SITES = {
   pearmonie: 'https://pearmonie.com/',
-  culbeed: 'https://culbeedmedia.com/',
   lands: 'https://www.landsofnigeria.com/',
   cutler: 'https://www.cutlerandwinston.com/',
   brats: 'https://www.blockchainbrats.com/',
@@ -80,6 +81,19 @@ export interface ProjectCard {
   images: { colOneTop: string; colOneBottom: string; colTwo: string };
 }
 
+export interface ProjectTile {
+  number: string;
+  category: string;
+  name: string;
+  url: string;
+  image: string;
+}
+
+/**
+ * Four headline projects get the full sticky-stacking treatment. Every card is
+ * an 85vh scroll step, so stacking all of them made the section ~6,600px tall
+ * on desktop and buried the footer; the rest go in a compact grid below.
+ */
 export const PROJECT_CARDS: ProjectCard[] = [
   {
     number: '01',
@@ -90,13 +104,6 @@ export const PROJECT_CARDS: ProjectCard[] = [
   },
   {
     number: '02',
-    category: 'Client · Media',
-    name: 'Culbeed Media',
-    url: SITES.culbeed,
-    images: shotTrio(SITES.culbeed),
-  },
-  {
-    number: '03',
     category: 'Venture · Real Estate',
     name: 'Lands of Nigeria',
     url: SITES.lands,
@@ -109,7 +116,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     },
   },
   {
-    number: '04',
+    number: '03',
     category: 'Client · PR',
     name: 'Cutler & Winston',
     url: SITES.cutler,
@@ -122,39 +129,42 @@ export const PROJECT_CARDS: ProjectCard[] = [
     },
   },
   {
-    number: '05',
+    number: '04',
     category: 'Client · Web3',
     name: 'Blockchain Brats',
     url: SITES.brats,
     images: shotTrio(SITES.brats),
   },
+];
+
+export const PROJECT_TILES: ProjectTile[] = [
   {
-    number: '06',
+    number: '05',
     category: 'Client · Healthcare',
     name: 'Colours of Wellbeing',
     url: SITES.colours,
-    images: shotTrio(SITES.colours),
+    image: shot(SITES.colours, 840, 540),
   },
   {
-    number: '07',
+    number: '06',
     category: 'Client · Events',
     name: 'Fudes Alpha Ent.',
     url: SITES.fudes,
-    images: shotTrio(SITES.fudes),
+    image: shot(SITES.fudes, 840, 540),
   },
   {
-    number: '08',
+    number: '07',
     category: 'Product',
     name: 'Let-A-Header',
     url: SITES.letAHeader,
-    images: shotTrio(SITES.letAHeader),
+    image: shot(SITES.letAHeader, 840, 540),
   },
   {
-    number: '09',
+    number: '08',
     category: 'Venture · Content',
     name: 'YouMaximize Blog',
     url: SITES.youmaximize,
-    images: shotTrio(SITES.youmaximize),
+    image: shot(SITES.youmaximize, 840, 540),
   },
 ];
 
@@ -166,7 +176,6 @@ const marqueeShot = (url: string) => shot(url, 840, 540);
 
 export const MARQUEE_ROW_ONE = [
   marqueeShot(SITES.pearmonie),
-  marqueeShot(SITES.culbeed),
   marqueeShot(SITES.lands),
   marqueeShot(SITES.cutler),
   marqueeShot(SITES.brats),
