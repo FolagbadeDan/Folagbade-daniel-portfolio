@@ -190,6 +190,7 @@ export const MARQUEE_ROW_TWO = [
 
 export const NAV_LINKS = [
   { label: 'About', href: '#about' },
+  { label: 'Work', href: '#experience' },
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },

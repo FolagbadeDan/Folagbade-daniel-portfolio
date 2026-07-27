@@ -31,10 +31,11 @@ export const STATS = [
   // { value: '₦XXM+', label: 'Ad spend managed' },
 ];
 
+// Culbeed Media dropped along with its project card — its site is down.
+// Add it back here if it returns; the work itself still happened.
 export const TRUSTED_BY = [
   "PEARMONIE",
   "CITISQUARE AFRICA",
-  "CULBEED MEDIA",
   "YOUMAXIMIZE",
   "LANDS OF NIGERIA",
   "CUTLER & WINSTON",
