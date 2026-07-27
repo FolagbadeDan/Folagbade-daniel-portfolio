@@ -15,6 +15,10 @@ export default defineConfig(({ mode }) => {
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
       },
       resolve: {
+        // framer-motion must share the app's React instance. Without this the
+        // dev pre-bundle can resolve a second copy, which surfaces as
+        // "Invalid hook call" inside motion.* components.
+        dedupe: ['react', 'react-dom'],
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
