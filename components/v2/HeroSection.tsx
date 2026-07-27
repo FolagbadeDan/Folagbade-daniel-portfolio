@@ -65,26 +65,33 @@ const HeroSection: React.FC = () => (
       </FadeIn>
     </div>
 
-    {/* Portrait */}
-    <FadeIn
-      delay={0.6}
-      y={30}
-      className="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]"
-    >
-      <Magnet padding={150} strength={3}>
-        <img
-          src={PORTRAIT}
-          alt="Folagbade Daniel"
-          className="w-full rounded-t-[3rem] object-cover"
-          style={{
-            // Fades the photo's hard bottom edge into the page background so a
-            // rectangular photo sits in a layout designed for a cut-out render.
-            maskImage: 'linear-gradient(to bottom, #000 78%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, #000 78%, transparent 100%)',
-          }}
-        />
-      </Magnet>
-    </FadeIn>
+    {/*
+      Portrait. Positioning lives on this static wrapper, not on the FadeIn:
+      framer-motion writes its own `transform` for the entrance, which silently
+      overrides Tailwind's -translate-x-1/2 and leaves the image sitting with
+      its left edge on the centre line. Centring via flex avoids transforms.
+    */}
+    <div className="pointer-events-none absolute inset-x-0 top-1/2 z-10 flex -translate-y-1/2 justify-center sm:bottom-0 sm:top-auto sm:translate-y-0">
+      <FadeIn
+        delay={0.6}
+        y={30}
+        className="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px]"
+      >
+        <Magnet padding={150} strength={3}>
+          <img
+            src={PORTRAIT}
+            alt="Folagbade Daniel"
+            className="w-full rounded-t-[3rem] object-cover"
+            style={{
+              // Fades the photo's hard bottom edge into the page background so a
+              // rectangular photo sits in a layout designed for a cut-out render.
+              maskImage: 'linear-gradient(to bottom, #000 78%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, #000 78%, transparent 100%)',
+            }}
+          />
+        </Magnet>
+      </FadeIn>
+    </div>
   </section>
 );
 

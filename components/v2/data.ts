@@ -15,16 +15,23 @@ const shot = (url: string, w: number, h: number) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${h}`;
 
 export const SITES = {
+  pearmonie: 'https://pearmonie.com/',
   culbeed: 'https://culbeedmedia.com/',
   lands: 'https://www.landsofnigeria.com/',
   cutler: 'https://www.cutlerandwinston.com/',
+  brats: 'https://www.blockchainbrats.com/',
   colours: 'https://coloursofwellbeing.com/',
   fudes: 'https://www.fudesalphaent.com/',
   letAHeader: 'https://let-a-header2.vercel.app/',
-  youmaximize: 'https://www.youmaximize.com/',
-  brats: 'https://www.blockchainbrats.com/',
-  pearmonie: 'https://pearmonie.com/',
+  youmaximize: 'https://www.youmaximize.com/blog',
 };
+
+/** Desktop crop, narrow/mobile layout, and full hero shot of the same site. */
+const shotTrio = (url: string) => ({
+  colOneTop: shot(url, 560, 420),
+  colOneBottom: shot(url, 480, 800),
+  colTwo: shot(url, 1280, 900),
+});
 
 export interface ServiceItem {
   number: string;
@@ -76,18 +83,21 @@ export interface ProjectCard {
 export const PROJECT_CARDS: ProjectCard[] = [
   {
     number: '01',
-    category: 'Client',
-    name: 'Culbeed Media',
-    url: SITES.culbeed,
-    images: {
-      colOneTop: shot(SITES.culbeed, 560, 420),
-      colOneBottom: shot(SITES.culbeed, 480, 800),
-      colTwo: shot(SITES.culbeed, 1280, 900),
-    },
+    category: 'Client · Fintech',
+    name: 'Pearmonie',
+    url: SITES.pearmonie,
+    images: shotTrio(SITES.pearmonie),
   },
   {
     number: '02',
-    category: 'Venture',
+    category: 'Client · Media',
+    name: 'Culbeed Media',
+    url: SITES.culbeed,
+    images: shotTrio(SITES.culbeed),
+  },
+  {
+    number: '03',
+    category: 'Venture · Real Estate',
     name: 'Lands of Nigeria',
     url: SITES.lands,
     images: {
@@ -99,8 +109,8 @@ export const PROJECT_CARDS: ProjectCard[] = [
     },
   },
   {
-    number: '03',
-    category: 'Client',
+    number: '04',
+    category: 'Client · PR',
     name: 'Cutler & Winston',
     url: SITES.cutler,
     images: {
@@ -111,6 +121,41 @@ export const PROJECT_CARDS: ProjectCard[] = [
       colTwo: shot(SITES.cutler, 1280, 900),
     },
   },
+  {
+    number: '05',
+    category: 'Client · Web3',
+    name: 'Blockchain Brats',
+    url: SITES.brats,
+    images: shotTrio(SITES.brats),
+  },
+  {
+    number: '06',
+    category: 'Client · Healthcare',
+    name: 'Colours of Wellbeing',
+    url: SITES.colours,
+    images: shotTrio(SITES.colours),
+  },
+  {
+    number: '07',
+    category: 'Client · Events',
+    name: 'Fudes Alpha Ent.',
+    url: SITES.fudes,
+    images: shotTrio(SITES.fudes),
+  },
+  {
+    number: '08',
+    category: 'Product',
+    name: 'Let-A-Header',
+    url: SITES.letAHeader,
+    images: shotTrio(SITES.letAHeader),
+  },
+  {
+    number: '09',
+    category: 'Venture · Content',
+    name: 'YouMaximize Blog',
+    url: SITES.youmaximize,
+    images: shotTrio(SITES.youmaximize),
+  },
 ];
 
 /**
@@ -120,26 +165,25 @@ export const PROJECT_CARDS: ProjectCard[] = [
 const marqueeShot = (url: string) => shot(url, 840, 540);
 
 export const MARQUEE_ROW_ONE = [
+  marqueeShot(SITES.pearmonie),
   marqueeShot(SITES.culbeed),
   marqueeShot(SITES.lands),
   marqueeShot(SITES.cutler),
-  marqueeShot(SITES.colours),
-  marqueeShot(SITES.fudes),
+  marqueeShot(SITES.brats),
 ];
 
 export const MARQUEE_ROW_TWO = [
+  marqueeShot(SITES.colours),
+  marqueeShot(SITES.fudes),
   marqueeShot(SITES.letAHeader),
   marqueeShot(SITES.youmaximize),
-  marqueeShot(SITES.brats),
-  marqueeShot(SITES.pearmonie),
 ];
 
-/** Contact is a mailto — this design has no contact section to anchor to. */
 export const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: 'mailto:daniel@youmaximize.com' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export const HERO_TAGLINE =

@@ -15,14 +15,20 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ card, index, total, progress }) => {
   // Earlier cards shrink further, so the stack reads as depth: the last card
-  // stays at 1 and each one before it settles 3% smaller.
-  const targetScale = 1 - (total - 1 - index) * 0.03;
+  // stays at 1 and each one before it settles a step smaller. The step is
+  // capped by total shrink rather than fixed at 3%, otherwise a long list
+  // drives the deepest card down to ~0.76 and its offset past 200px.
+  const depth = total - 1 - index;
+  const scaleStep = Math.min(0.03, 0.15 / Math.max(1, total - 1));
+  const topStep = Math.min(28, 140 / Math.max(1, total - 1));
+
+  const targetScale = 1 - depth * scaleStep;
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
 
   return (
     <div className="sticky top-24 flex h-[85vh] items-start justify-center md:top-32">
       <motion.article
-        style={{ scale, top: `${index * 28}px` }}
+        style={{ scale, top: `${Math.round(index * topStep)}px` }}
         className={`relative flex w-full max-w-6xl flex-col gap-5 border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:gap-6 sm:p-6 md:p-8 ${RADIUS}`}
       >
         {/* Top row */}
@@ -85,9 +91,10 @@ const Card: React.FC<CardProps> = ({ card, index, total, progress }) => {
 };
 
 /**
- * Bottom padding is generous on purpose: the last card reaches its final scale
- * at scroll progress 1, which without trailing space lands on the document's
- * very last pixel and never actually becomes visible.
+ * Trailing padding matters here: the last card reaches its final scale at
+ * scroll progress 1, so without space after it that state lands on the
+ * document's last pixel and is never seen. The footer now supplies most of
+ * that room, with some padding kept so the stack isn't flush against it.
  */
 const ProjectsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -99,7 +106,7 @@ const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 pb-40 pt-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 sm:pb-48 md:-mt-14 md:rounded-t-[60px] md:px-10"
+      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 pb-24 pt-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 sm:pb-32 md:-mt-14 md:rounded-t-[60px] md:px-10"
       style={{ overflowX: 'clip' }}
     >
       <FadeIn

@@ -16,10 +16,10 @@ export const PERSONAL_INFO = {
   instagram: "https://www.instagram.com/folagbadedan/",
   whatsapp: "https://wa.link/r6wa55",
   email: "daniel@youmaximize.com",
-  // Drop a PDF in /public and point this at it (e.g. "/folagbade-daniel-resume.pdf"),
-  // or paste a public Drive/Dropbox link. The "Download résumé" button stays hidden
-  // until this is filled in, so an empty value never ships a dead button.
-  resumeUrl: "",
+  // ACTION NEEDED: save your CV as public/cv.pdf for this link to resolve.
+  // Until that file exists the footer's CV link 404s. Swap for a public
+  // Drive/Dropbox URL instead if you'd rather not host the file here.
+  resumeUrl: "/cv.pdf",
 };
 
 // Fourth stat slot: uncomment and fill with a number you can defend
