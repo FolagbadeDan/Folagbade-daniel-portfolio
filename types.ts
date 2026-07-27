@@ -14,6 +14,16 @@ export interface ChatMessage {
   text: string;
 }
 
+export interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  achievements: string[];
+  /** Hidden from the page until the details are confirmed. */
+  draft?: boolean;
+}
+
 export interface Skill {
   category: string;
   icon?: string;

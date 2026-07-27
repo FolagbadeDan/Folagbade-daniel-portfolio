@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PERSONAL_INFO } from '../constants';
+import { PERSONAL_INFO, TRUSTED_BY } from '../constants';
 
 const Hero: React.FC = () => {
   const scrollToSection = (id: string) => {
@@ -12,9 +12,9 @@ const Hero: React.FC = () => {
 
   const services = [
     { icon: 'fa-code', label: 'Websites & Code', color: 'text-accent2' },
-    { icon: 'fa-chart-line', label: 'Marketing', color: 'text-accent1' },
-    { icon: 'fa-robot', label: 'Automation', color: 'text-accent3' },
-    { icon: 'fa-film', label: 'Creative Work', color: 'text-accent4' },
+    { icon: 'fa-chart-line', label: 'Performance Marketing', color: 'text-accent1' },
+    { icon: 'fa-magnifying-glass-chart', label: 'SEO & AIO', color: 'text-accent3' },
+    { icon: 'fa-robot', label: 'Automation', color: 'text-accent4' },
   ];
 
   return (
@@ -41,21 +41,21 @@ const Hero: React.FC = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent4 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-accent4 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
             </span>
-            <span className="text-[10px] md:text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest">{PERSONAL_INFO.title} · {PERSONAL_INFO.location}</span>
+            <span className="text-[10px] md:text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest">{PERSONAL_INFO.title} · {PERSONAL_INFO.availability}</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black mb-8 md:mb-10 leading-[1.05] tracking-tighter text-slate-900 dark:text-white break-name">
-            Hey, I'm <br className="xs:hidden sm:hidden" />
-            <span className="gradient-text italic pr-4">{PERSONAL_INFO.name}.</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-8 md:mb-10 leading-[1.1] tracking-tighter text-slate-900 dark:text-white max-w-4xl">
+            I build growth engines&nbsp;— <br className="hidden sm:block" />
+            <span className="gradient-text italic pr-4">not just pretty websites.</span>
           </h1>
 
           {/* Sub-headline */}
-          <p className="text-xl md:text-3xl text-slate-700 dark:text-slate-300 mb-10 md:mb-12 max-w-3xl leading-relaxed font-medium tracking-tight">
-            I help businesses grow faster through{' '}
-            <span className="text-slate-900 dark:text-white underline decoration-accent2 decoration-4 underline-offset-8">clear websites</span>,{' '}
-            <span className="text-slate-900 dark:text-white underline decoration-accent1 decoration-4 underline-offset-8">effective marketing</span>, and{' '}
-            <span className="text-slate-900 dark:text-white underline decoration-accent3 decoration-4 underline-offset-8">simple automation</span>.
+          <p className="text-lg md:text-2xl text-slate-700 dark:text-slate-300 mb-10 md:mb-12 max-w-3xl leading-relaxed font-medium tracking-tight">
+            I'm {PERSONAL_INFO.name}. For 6+ years I've helped fintech, real estate, and media brands turn traffic into customers through{' '}
+            <span className="text-slate-900 dark:text-white underline decoration-accent2 decoration-4 underline-offset-8">high-converting websites</span>,{' '}
+            <span className="text-slate-900 dark:text-white underline decoration-accent1 decoration-4 underline-offset-8">performance marketing</span>, and{' '}
+            <span className="text-slate-900 dark:text-white underline decoration-accent3 decoration-4 underline-offset-8">automation that runs while they sleep</span>.
           </p>
 
           {/* Service tags */}
@@ -80,19 +80,18 @@ const Hero: React.FC = () => {
               onClick={() => scrollToSection('contact')}
               className="w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 glass border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white rounded-2xl font-black text-sm md:text-base uppercase tracking-widest transition-all hover:-translate-y-1 active:scale-95 shadow-lg bg-white/50 dark:bg-cardDark/50"
             >
-              Let's Talk
+              Hire me →
             </button>
           </div>
         </div>
 
         {/* Trust bar */}
         <div className="mt-28 md:mt-40 pt-16 md:pt-20 border-t border-slate-200 dark:border-white/10">
-          <p className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-10 md:mb-12 text-center md:text-left font-bold">Brands I've Grown</p>
-          <div className="flex flex-wrap items-center justify-center md:justify-between gap-10 md:gap-14 opacity-60 hover:opacity-100 transition-opacity duration-500">
-            <span className="text-xl md:text-3xl font-black tracking-tighter text-slate-400 dark:text-slate-500">PEARMONIE</span>
-            <span className="text-xl md:text-3xl font-black tracking-tighter text-slate-400 dark:text-slate-500">CITISQUARE</span>
-            <span className="text-xl md:text-3xl font-black tracking-tighter text-slate-400 dark:text-slate-500">CULBEED</span>
-            <span className="text-xl md:text-3xl font-black tracking-tighter text-slate-400 dark:text-slate-500">YOUMAXIMIZE</span>
+          <p className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-10 md:mb-12 text-center md:text-left font-bold">Trusted by brands across fintech, real estate &amp; media</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 md:gap-y-8 opacity-60 hover:opacity-100 transition-opacity duration-500">
+            {TRUSTED_BY.map(brand => (
+              <span key={brand} className="text-lg md:text-2xl font-black tracking-tighter text-slate-400 dark:text-slate-500">{brand}</span>
+            ))}
           </div>
         </div>
       </div>

@@ -3,18 +3,22 @@ import React from 'react';
 import { EXPERIENCE, PERSONAL_INFO } from '../constants';
 
 const companyColors: Record<string, string> = {
-  'PearMonie':       'text-accent1 bg-accent1/10 border-accent1/20',
-  'CITISQUARE AFRICA': 'text-accent2 bg-accent2/10 border-accent2/20',
-  'YouMaximize':     'text-accent3 bg-accent3/10 border-accent3/20',
+  'PearMonie':         'text-accent1 bg-accent1/10 border-accent1/20',
+  'Citisquare Africa': 'text-accent2 bg-accent2/10 border-accent2/20',
+  'Culbeed Media':     'text-accent4 bg-accent4/10 border-accent4/20',
+  'YouMaximize':       'text-accent3 bg-accent3/10 border-accent3/20',
 };
 
 const companyBorders: Record<string, string> = {
-  'PearMonie':       'group-hover:border-accent1/40',
-  'CITISQUARE AFRICA': 'group-hover:border-accent2/40',
-  'YouMaximize':     'group-hover:border-accent3/40',
+  'PearMonie':         'group-hover:border-accent1/40',
+  'Citisquare Africa': 'group-hover:border-accent2/40',
+  'Culbeed Media':     'group-hover:border-accent4/40',
+  'YouMaximize':       'group-hover:border-accent3/40',
 };
 
 const Experience: React.FC = () => {
+  const roles = EXPERIENCE.filter(exp => !exp.draft);
+
   return (
     <section id="experience" className="py-24 md:py-32 relative overflow-hidden">
       <div className="absolute top-[40%] right-[-10%] w-[30rem] h-[30rem] bg-accent2/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none z-0"></div>
@@ -43,7 +47,7 @@ const Experience: React.FC = () => {
 
         {/* Experience cards — modern bento grid */}
         <div className="grid grid-cols-1 gap-6">
-          {EXPERIENCE.map((exp, idx) => {
+          {roles.map((exp, idx) => {
             const badgeClasses = companyColors[exp.company] ?? 'text-primary bg-primary/10 border-primary/20';
             const borderHover = companyBorders[exp.company] ?? 'group-hover:border-primary/40';
             

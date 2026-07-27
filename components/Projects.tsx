@@ -35,11 +35,12 @@ const Projects: React.FC = () => {
           <div className="inline-block px-4 py-2 rounded-2xl glass border border-slate-300 dark:border-white/10 mb-6 bg-white/50 dark:bg-white/5 shadow-sm">
             <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-primary">My Work</h2>
           </div>
-          <h3 className="text-4xl md:text-7xl font-black tracking-tighter text-slate-900 dark:text-white mb-6">
-            Things I've <span className="text-accent3 italic">built.</span>
+          <h3 className="text-4xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white mb-6">
+            Selected work — websites, systems, <br className="hidden md:block" />
+            <span className="text-accent3 italic">and brands I've grown.</span>
           </h3>
           <p className="text-slate-600 dark:text-slate-400 text-lg md:text-xl max-w-2xl font-medium leading-relaxed tracking-tight">
-            Here is a selection of websites I've designed, marketing systems I've built, and brands I've helped grow.
+            Every project here was built to do a job — rank, convert, or scale. Tap any to see it live.
           </p>
         </div>
 

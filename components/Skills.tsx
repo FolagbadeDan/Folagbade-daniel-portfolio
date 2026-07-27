@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { SKILLS } from '../constants';
+import { SKILLS, TECH_STACK } from '../constants';
 
 const pillarColors: Record<string, { accent: string; glow: string; iconBg: string; border: string }> = {
   'Websites & Code':    { accent: 'text-accent2', glow: 'bg-accent2/5', iconBg: 'bg-accent2/10 border-accent2/20', border: 'group-hover:border-accent2/40' },
   'Marketing':          { accent: 'text-accent1', glow: 'bg-accent1/5', iconBg: 'bg-accent1/10 border-accent1/20', border: 'group-hover:border-accent1/40' },
   'Automation':         { accent: 'text-accent4', glow: 'bg-accent4/5', iconBg: 'bg-accent4/10 border-accent4/20', border: 'group-hover:border-accent4/40' },
-  'Creative Work':      { accent: 'text-accent3', glow: 'bg-accent3/5', iconBg: 'bg-accent3/10 border-accent3/20', border: 'group-hover:border-accent3/40' },
+  'Creative & Content': { accent: 'text-accent3', glow: 'bg-accent3/5', iconBg: 'bg-accent3/10 border-accent3/20', border: 'group-hover:border-accent3/40' },
 };
 
 const Skills: React.FC = () => {
@@ -71,13 +71,13 @@ const Skills: React.FC = () => {
         <div className="mt-12 p-8 md:p-10 rounded-3xl glass border border-slate-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 bg-white/30 dark:bg-cardDark/40 shadow-xl">
           <div className="text-center md:text-left">
             <p className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">My Tech Stack</p>
-            <p className="text-lg md:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-              WordPress · Next.js · Make.com · n8n · Meta Ads · SEO
+            <p className="text-base md:text-xl font-black text-slate-900 dark:text-white tracking-tight">
+              {TECH_STACK}
             </p>
           </div>
           <div className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-accent4 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
-            <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-accent4">Ready for your project</span>
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-accent4 whitespace-nowrap">Used on live client work</span>
           </div>
         </div>
       </div>

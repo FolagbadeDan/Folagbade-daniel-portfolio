@@ -20,13 +20,13 @@ const Contact: React.FC = () => {
               <div className="max-w-2xl">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent4/10 border border-accent4/20 text-accent4 text-[10px] font-black uppercase tracking-widest mb-8">
                   <span className="w-2 h-2 rounded-full bg-accent4 animate-pulse"></span>
-                  Available for new projects
+                  Available for roles &amp; projects
                 </div>
                 <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter leading-[1.05]">
-                  Let's build <br />something <span className="text-accent1 italic">great.</span>
+                  Let's build <br />something that <span className="text-accent1 italic">grows.</span>
                 </h2>
                 <p className="text-lg md:text-2xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                  Whether you need a high-converting website, a data-driven marketing strategy, or complex business automations—I can help you get results.
+                  Hiring for a growth or marketing role? Need a website, campaign, or automation that actually moves numbers? Tell me what you're trying to grow — I'll tell you how I'd approach it.
                 </p>
               </div>
 
@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
                   className="flex items-center justify-center gap-4 px-10 py-6 bg-primary text-white rounded-2xl font-black text-lg hover:bg-primary/90 transition-all hover:-translate-y-1 shadow-lg shadow-primary/30 whitespace-nowrap"
                 >
                   <i className="fas fa-envelope"></i>
-                  Send an Email
+                  Email me
                 </a>
                 <a
                   href={PERSONAL_INFO.whatsapp}
@@ -47,7 +47,19 @@ const Contact: React.FC = () => {
                   <i className="fab fa-whatsapp text-accent4"></i>
                   Message on WhatsApp
                 </a>
-                
+                {/* Renders once PERSONAL_INFO.resumeUrl points at a real file. */}
+                {PERSONAL_INFO.resumeUrl && (
+                  <a
+                    href={PERSONAL_INFO.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-4 px-10 py-6 bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white rounded-2xl font-black text-lg hover:bg-slate-50 dark:hover:bg-white/10 transition-all hover:-translate-y-1 shadow-md whitespace-nowrap"
+                  >
+                    <i className="fas fa-file-arrow-down text-primary"></i>
+                    Download résumé
+                  </a>
+                )}
+
                 <div className="flex items-center justify-center gap-8 pt-4">
                   {[
                     { icon: 'fa-linkedin', url: PERSONAL_INFO.linkedin },
@@ -71,7 +83,7 @@ const Contact: React.FC = () => {
             <div className="max-w-xs">
               <span className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">Folagbade<span className="text-primary italic">.</span></span>
               <p className="mt-4 text-base text-slate-500 font-medium leading-relaxed">
-                Digital Growth Manager based in Lagos, Nigeria. Building systems that scale brands.
+                Digital Marketing &amp; Growth Manager based in Lagos — building systems that scale brands worldwide.
               </p>
             </div>
             
