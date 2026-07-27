@@ -4,7 +4,11 @@ import Magnet from './Magnet';
 import ContactButton from './ContactButton';
 import { NAV_LINKS, HERO_TAGLINE } from './data';
 
-const PORTRAIT = 'https://i.ibb.co/Ps4vT8z4/folagbade-potrait.jpg';
+// Background-removed cut-out (591x422, ~59% transparent, subject bleeds to the
+// bottom edge) — so it needs no rounded corners and no fade mask, unlike the
+// rectangular photo it replaces.
+const PORTRAIT =
+  'https://res.cloudinary.com/dx7j2i7bo/image/upload/v1785170153/a532298a-df76-4df3-af55-37584f5bb733-removebg-preview_rqzf4d.png';
 
 /**
  * Heading scale note: the source design used 17.5vw for a 12-character name.
@@ -75,19 +79,15 @@ const HeroSection: React.FC = () => (
       <FadeIn
         delay={0.6}
         y={30}
-        className="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px]"
+        className="w-[340px] sm:w-[460px] md:w-[580px] lg:w-[680px]"
       >
         <Magnet padding={150} strength={3}>
           <img
             src={PORTRAIT}
             alt="Folagbade Daniel"
-            className="w-full rounded-t-[3rem] object-cover"
-            style={{
-              // Fades the photo's hard bottom edge into the page background so a
-              // rectangular photo sits in a layout designed for a cut-out render.
-              maskImage: 'linear-gradient(to bottom, #000 78%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, #000 78%, transparent 100%)',
-            }}
+            width={591}
+            height={422}
+            className="h-auto w-full"
           />
         </Magnet>
       </FadeIn>
