@@ -10,8 +10,9 @@ const SOCIALS = [
   { label: 'Instagram', url: PERSONAL_INFO.instagram },
 ];
 
+// inline-block + py lifts these from a 24px hit area to ~40px for thumbs.
 const linkClass =
-  'text-[#D7E2EA] opacity-70 transition-opacity duration-200 hover:opacity-100';
+  'inline-block py-2 text-[#D7E2EA] opacity-70 transition-opacity duration-200 hover:opacity-100';
 
 const headingClass =
   'text-[10px] font-medium uppercase tracking-widest text-[#D7E2EA] opacity-40';
@@ -47,14 +48,22 @@ const FooterSection: React.FC = () => (
 
         <div className="flex flex-wrap items-center gap-4">
           <ContactButton />
-          <a
-            href={PERSONAL_INFO.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block whitespace-nowrap rounded-full border-2 border-[#D7E2EA] px-8 py-3 text-xs font-medium uppercase tracking-widest text-[#D7E2EA] transition-colors duration-200 hover:bg-[#D7E2EA]/10 sm:px-10 sm:py-3.5 sm:text-sm md:text-base"
-          >
-            Download CV
-          </a>
+          {/*
+            The CV button renders only once resumeUrl points at a file that
+            exists. It was hardcoded to /cv.pdf, which 404s, so it shipped as a
+            dead link — save the PDF to public/cv.pdf and set resumeUrl to
+            "/cv.pdf" in constants.tsx and the button returns on its own.
+          */}
+          {PERSONAL_INFO.resumeUrl && (
+            <a
+              href={PERSONAL_INFO.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block whitespace-nowrap rounded-full border-2 border-[#D7E2EA] px-8 py-3 text-xs font-medium uppercase tracking-widest text-[#D7E2EA] transition-colors duration-200 hover:bg-[#D7E2EA]/10 sm:px-10 sm:py-3.5 sm:text-sm md:text-base"
+            >
+              Download CV
+            </a>
+          )}
         </div>
       </FadeIn>
 
@@ -63,7 +72,7 @@ const FooterSection: React.FC = () => (
         y={20}
         className="mt-16 grid grid-cols-1 gap-10 border-t border-[#D7E2EA]/10 pt-12 sm:grid-cols-3 md:mt-20"
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
           <span className={headingClass}>Contact</span>
           <a href={`mailto:${PERSONAL_INFO.email}`} className={linkClass}>
             {PERSONAL_INFO.email}
@@ -78,7 +87,7 @@ const FooterSection: React.FC = () => (
           </a>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
           <span className={headingClass}>Elsewhere</span>
           {SOCIALS.map((s) => (
             <a
@@ -93,7 +102,7 @@ const FooterSection: React.FC = () => (
           ))}
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <span className={headingClass}>Based in</span>
           <span className="text-[#D7E2EA] opacity-70">{PERSONAL_INFO.locationLong}</span>
           <span className="text-[#D7E2EA] opacity-70">{PERSONAL_INFO.currentRole}</span>

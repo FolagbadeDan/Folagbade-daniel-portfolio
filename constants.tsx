@@ -16,10 +16,10 @@ export const PERSONAL_INFO = {
   instagram: "https://www.instagram.com/folagbadedan/",
   whatsapp: "https://wa.link/r6wa55",
   email: "daniel@youmaximize.com",
-  // ACTION NEEDED: save your CV as public/cv.pdf for this link to resolve.
-  // Until that file exists the footer's CV link 404s. Swap for a public
-  // Drive/Dropbox URL instead if you'd rather not host the file here.
-  resumeUrl: "/cv.pdf",
+  // Empty on purpose: "/cv.pdf" was shipping a 404 because no such file
+  // exists. Save the PDF to public/cv.pdf and set this to "/cv.pdf" (or paste
+  // a public Drive/Dropbox link) and the footer's CV button reappears.
+  resumeUrl: "",
 };
 
 // Fourth stat slot: uncomment and fill with a number you can defend

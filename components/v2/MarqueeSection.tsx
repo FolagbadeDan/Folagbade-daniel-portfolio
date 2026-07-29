@@ -7,12 +7,16 @@ const triple = <T,>(items: T[]) => [...items, ...items, ...items];
 const rowOne = triple(MARQUEE_ROW_ONE);
 const rowTwo = triple(MARQUEE_ROW_TWO);
 
+// Smaller tiles on phones: 24 tiles at full desktop size meant a lot of
+// decoded pixels to composite on every scroll frame, and the source captures
+// are 840px wide so the smaller box is still a 2x source.
 const Tile: React.FC<{ src: string }> = ({ src }) => (
   <img
     src={src}
     alt=""
     loading="lazy"
-    className="h-[270px] w-[420px] shrink-0 rounded-2xl object-cover"
+    decoding="async"
+    className="h-[170px] w-[264px] shrink-0 rounded-xl object-cover sm:h-[220px] sm:w-[340px] sm:rounded-2xl md:h-[270px] md:w-[420px]"
   />
 );
 
